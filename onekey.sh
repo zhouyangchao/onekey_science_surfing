@@ -27,17 +27,20 @@ function ss_config()
 	mkdir -p `dirname ${ss_config}`
 
 	echo -n "please input server ip: "
-	read server_ip
+	read server
 	echo -n "please input server port: "
 	read server_port
-	echo -n "please input server passwd: "
-	read server_passwd
+	echo -n "please input password: "
+	read password
+	echo -n "please input method: "
+	read method
 
 	cp -f ./ss_config.json $ss_config
 
-	sed -i "s/\"server\":.*$/\"server\":\"${server_ip}\",/g" $ss_config
+	sed -i "s/\"server\":.*$/\"server\":\"${server}\",/g" $ss_config
 	sed -i "s/\"server_port\":.*$/\"server_port\":\"${server_port}\",/g" $ss_config
-	sed -i "s/\"password\":.*$/\"password\":\"${server_passwd}\",/g" $ss_config
+	sed -i "s/\"password\":.*$/\"password\":\"${password}\",/g" $ss_config
+	sed -i "s/\"method\":.*$/\"method\":\"${method}\"/g" $ss_config
 }
 
 function ss_stop()
