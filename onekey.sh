@@ -63,12 +63,12 @@ function proxychain_install()
 	proxychain_config=$1
 	mkdir -p `dirname ${proxychain_config}`
 	if [ "X`which ${proxy} 2>/dev/null`" = "X" ]; then
-		git clone https://github.com/haad/proxychains.git
-		cd proxychains
+		unzip proxychains-master.zip
+		cd proxychains-master
 		make && make install
 		cp -f ./src/proxychains.conf ${proxychain_config}
 		cd ../
-		rm -rf proxychains
+		rm -rf proxychains-master
 	fi
 }
 
