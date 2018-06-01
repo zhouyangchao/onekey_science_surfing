@@ -1,0 +1,7 @@
+[submodule "proxychains"]
+	path = proxychains
+	url = https://github.com/haad/proxychains.git
+[submodule "shadowsocks"]
+	path = shadowsocks
+	url = https://github.com/shadowsocks/shadowsocks.git
+	branch = master

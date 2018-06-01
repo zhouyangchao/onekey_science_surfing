@@ -5,14 +5,9 @@ proxy=proxychains4
 
 function ss_install()
 {
-	ss_pkg=shadowsocks-2.8.2.tar.gz
-	if [ "X`which ${ss} 2>/dev/null`" = "X" ]; then
-		tar zxvf ${ss_pkg}
-		cd shadowsocks-2.8.2
-		python setup.py install
-		cd ../
-		rm -rf shadowsocks-2.8.2
-	fi
+	cd shadowsocks
+	python setup.py install
+	cd ../
 }
 
 function ss_config()
@@ -63,12 +58,10 @@ function proxychain_install()
 	proxychain_config=$1
 	mkdir -p `dirname ${proxychain_config}`
 	if [ "X`which ${proxy} 2>/dev/null`" = "X" ]; then
-		unzip proxychains-master.zip
-		cd proxychains-master
+		cd proxychains
 		make && make install
 		cp -f ./src/proxychains.conf ${proxychain_config}
 		cd ../
-		rm -rf proxychains-master
 	fi
 }
 
@@ -83,6 +76,8 @@ function onekey_status()
 {
 	netstat -nlp --tcp | egrep "1080"
 }
+
+git submodule update --init --remote || exit 1
 
 ss_stop
 ss_install 
